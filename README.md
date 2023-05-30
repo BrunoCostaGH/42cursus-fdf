@@ -3,6 +3,12 @@
 ## Description
 All programs that you wrote until now were executed in text mode on your terminal. Now, let’s discover something more exciting: how to open a graphics window and draw inside? To start your journey in graphic programming, FdF offers to represent “iron wire” meshing in 3D.
 
+## Usage
+
+```unix
+  ./fdf <path_to_map> 
+```
+
 ## Credits
 Thanks to [VBrazhnik](https://github.com/VBrazhnik/) for providing a [wiki](https://github.com/VBrazhnik/FdF/wiki) on the project.  
 Thanks to [Harm Smits](https://github.com/harm-smits) for the [Minilibx Documentation](https://harm-smits.github.io/42docs/libs/minilibx).  
