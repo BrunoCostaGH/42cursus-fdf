@@ -65,6 +65,7 @@ t_point	*set_coords(t_mlx *mlx, char *argv, int y0, int x0)
 	point->y = (-z + (x + y) * sin(0.523599) + margin->y * mlx->zoom / 2);
 	point->z = z;
 	point->color = mlx->map[y0]->alt[x0]->color;
+	free(margin);
 	return (point);
 }
 
