@@ -14,14 +14,16 @@
 
 static void	free_map(t_mlx_map **map)
 {
-	int	i;
+	int	i[2];
 
-	i = 0;
-	while (map[i])
+	i[0] = 0;
+	while (map[i[0]])
 	{
-		free(map[i]->alt);
-		free(map[i]);
-		i++;
+		i[1] = 0;
+		while (map[i[0]]->alt[i[1]])
+			free(map[i[0]]->alt[i[1]++]);
+		free(map[i[0]]->alt);
+		free(map[i[0]++]);
 	}
 }
 
@@ -30,5 +32,7 @@ void	free_mlx(t_mlx *mlx)
 	free_map(mlx->map);
 	free(mlx->map);
 	free(mlx->win);
+	free(mlx->img);
+	free(mlx->id);
 	free(mlx);
 }

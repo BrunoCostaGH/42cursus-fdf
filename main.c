@@ -48,10 +48,21 @@ program in a clean way.
 
 #include "fdf.h"
 
+//	Clear MLX struct.
+static int	clear_mlx(t_mlx	*mlx)
+{
+	mlx_clear_window(mlx->id, mlx->win->id);
+	mlx_destroy_window(mlx->id, mlx->win->id);
+	mlx_destroy_image(mlx->id, mlx->img->id);
+	mlx_destroy_display(mlx->id);
+	free_mlx(mlx);
+	exit(0);
+}
+
 static int	close_win(int keycode, void *param)
 {
-	if (keycode == 65307 || (int *)param == (int *)347)
-		exit(0);
+	if (keycode == 65307)
+		clear_mlx(param);
 	return (0);
 }
 
@@ -62,16 +73,8 @@ static void	create_window(t_mlx *mlx)
 
 	win = mlx->win;
 	win->id = mlx_new_window(mlx->id, WIN_X, WIN_Y, "FDF by bsilva-c");
-	mlx_hook(win->id, 17, 1L << 17, close_win, NULL);
-	mlx_hook(win->id, 2, 1L << 0, close_win, NULL);
-}
-
-//	Clear MLX struct.
-static void	clear_mlx(t_mlx	*mlx)
-{
-	mlx_clear_window(mlx->id, mlx->win->id);
-	mlx_destroy_window(mlx->id, mlx->win->id);
-	free_mlx(mlx);
+	mlx_hook(win->id, 17, 1L << 17, clear_mlx, mlx);
+	mlx_hook(win->id, 2, 1L << 0, close_win, mlx);
 }
 
 //	Check if files exists.
